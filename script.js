@@ -1,4 +1,3 @@
-
 let currentSlide = 0;
 const slides = document.querySelectorAll('.carousel-item');
 const totalSlides = slides.length;
@@ -11,7 +10,6 @@ document.getElementById('prevBtn').addEventListener('click', () => {
   goToSlide(currentSlide - 1);
 });
 
-
 function goToSlide(slideIndex) {
   if (slideIndex >= totalSlides) {
     currentSlide = 0;
@@ -23,7 +21,6 @@ function goToSlide(slideIndex) {
   updateCarousel();
 }
 
-
 function updateCarousel() {
   for (let i = 0; i < totalSlides; i++) {
     if (i === currentSlide) {
@@ -33,6 +30,5 @@ function updateCarousel() {
     }
   }
 }
-
 
 updateCarousel();
