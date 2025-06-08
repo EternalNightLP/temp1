@@ -1,27 +1,38 @@
-// Navbar CSS property in Scroll
-window.addEventListener("scroll", () => {
-  const navbar = document.querySelector(".navbar");
-  if (window.scrollY > 100) {
-    navbar.classList.add("scrolled");
+
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-item');
+const totalSlides = slides.length;
+
+document.getElementById('nextBtn').addEventListener('click', () => {
+  goToSlide(currentSlide + 1);
+});
+
+document.getElementById('prevBtn').addEventListener('click', () => {
+  goToSlide(currentSlide - 1);
+});
+
+
+function goToSlide(slideIndex) {
+  if (slideIndex >= totalSlides) {
+    currentSlide = 0;
+  } else if (slideIndex < 0) {
+    currentSlide = totalSlides - 1;
   } else {
-    navbar.classList.remove("scrolled");
+    currentSlide = slideIndex;
   }
-});
+  updateCarousel();
+}
 
-// Profile section redirecting
-const profileIcon = document.querySelector(".profile-icon");
-profileIcon.addEventListener("click", () => {
-  window.location.href = "profile-details.html";
-});
 
-// Movie card
-const movieCard = document.querySelectorAll(".content-card");
-movieCard.forEach((card) => {
-  card.addEventListener("mouseEnter", () => {
-    card.style.transform = "scale(1.05)";
-  });
+function updateCarousel() {
+  for (let i = 0; i < totalSlides; i++) {
+    if (i === currentSlide) {
+      slides[i].style.display = 'block';
+    } else {
+      slides[i].style.display = 'none';
+    }
+  }
+}
 
-  card.addEventListener("mouseleave", () => {
-    card.style.transform = "scale(1)";
-  });
-});
+
+updateCarousel();
